@@ -58,27 +58,27 @@ public class AuthController {
 
   @Autowired
   RefreshTokenService refreshTokenService;
-
   @PostMapping("/signin")
   public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
-
-    Authentication authentication = authenticationManager
-        .authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
-
-    SecurityContextHolder.getContext().setAuthentication(authentication);
-
-    UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
-
-    String jwt = jwtUtils.generateJwtToken(userDetails);
-
-    List<String> roles = userDetails.getAuthorities().stream().map(item -> item.getAuthority())
-        .collect(Collectors.toList());
-
-    RefreshToken refreshToken = refreshTokenService.createRefreshToken(userDetails.getId());
-
-    return ResponseEntity.ok(new JwtResponse(jwt, refreshToken.getToken(), userDetails.getId(),
-        userDetails.getUsername(), userDetails.getEmail(), roles));
+  
+      Authentication authentication = authenticationManager
+          .authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
+  
+      SecurityContextHolder.getContext().setAuthentication(authentication);
+  
+      UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+  
+      String jwt = jwtUtils.generateJwtToken(userDetails);
+  
+      List<String> roles = userDetails.getAuthorities().stream().map(item -> item.getAuthority())
+          .collect(Collectors.toList());
+  
+      RefreshToken refreshToken = refreshTokenService.createRefreshToken(userDetails.getId());
+  
+      return ResponseEntity.ok(new JwtResponse(jwt, refreshToken.getToken(), userDetails.getId(),
+          userDetails.getUsername(), userDetails.getEmail(), roles));
   }
+  
 
   @PostMapping("/signup")
   public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
@@ -152,5 +152,4 @@ public class AuthController {
     refreshTokenService.deleteByUserId(userId);
     return ResponseEntity.ok(new MessageResponse("Log out successful!"));
   }
-
 }

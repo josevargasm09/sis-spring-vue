@@ -22,9 +22,8 @@ public class JwtUtils {
     private int jwtExpirationMs;
 
     public String generateJwtToken(UserDetailsImpl userDetails) {
-        UserDetailsImpl userPrincipal = (UserDetailsImpl) userDetails.getPrincipal();
         return Jwts.builder()
-                .setSubject((userPrincipal.getUsername()))
+                .setSubject((userDetails.getUsername()))
                 .setIssuedAt(new Date())
                 .setExpiration(new Date((new Date()).getTime() + jwtExpirationMs))
                 .signWith(SignatureAlgorithm.HS512, jwtSecret)
@@ -46,7 +45,7 @@ public class JwtUtils {
     }
 
     public String generateTokenFromUsername(String username) {
-      // TODO Auto-generated method stub
-      throw new UnsupportedOperationException("Unimplemented method 'generateTokenFromUsername'");
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'generateTokenFromUsername'");
     }
 }
