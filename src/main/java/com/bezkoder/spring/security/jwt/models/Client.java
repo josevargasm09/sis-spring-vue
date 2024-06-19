@@ -1,18 +1,33 @@
+// src/main/java/com/bezkoder/spring/security/jwt/models/Client.java
+
 package com.bezkoder.spring.security.jwt.models;
 
 import javax.persistence.*;
 
 @Entity
+@Table(name = "clients")
 public class Client {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(nullable = false, length = 50)
     private String name;
+
+    @Column(nullable = false, length = 8, unique = true)
+    private String dni;
+
+    @Column(nullable = false, length = 100)
     private String address;
-    private String phone;
+
+    @Column(nullable = false, length = 50)
     private String email;
 
-    // Getters and Setters
+    @Column(nullable = false, length = 15)
+    private String phone;
+
+    // Getters y Setters
     public Long getId() {
         return id;
     }
@@ -29,12 +44,12 @@ public class Client {
         this.name = name;
     }
 
-    public String getAddress() {
-        return address;
+    public String getEmail() {
+        return email;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPhone() {
@@ -45,11 +60,16 @@ public class Client {
         this.phone = phone;
     }
 
-    public String getEmail() {
-        return email;
+    public String getDni() {
+        return dni;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setDni(String dni) {
+        this.dni = dni;
+    }
+
+    public void setAddress(Class<? extends Client> class1) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setAddress'");
     }
 }

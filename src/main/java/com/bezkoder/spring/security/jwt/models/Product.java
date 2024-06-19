@@ -1,18 +1,34 @@
+// src/main/java/com/bezkoder/spring/security/jwt/models/Product.java
+
 package com.bezkoder.spring.security.jwt.models;
 
 import javax.persistence.*;
 
 @Entity
+@Table(name = "products")
 public class Product {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
-    private String description;
-    private Double price;
-    private String unit;
 
-    // Getters and Setters
+    @Column(nullable = false)
+    private String name;
+
+    @ManyToOne
+    @JoinColumn(name = "brand_id")
+    private Brand brand;
+
+    // Other fields and relationships...
+
+    // Constructors, Getters and Setters
+    public Product() {}
+
+    public Product(String name, Brand brand) {
+        this.name = name;
+        this.brand = brand;
+    }
+
     public Long getId() {
         return id;
     }
@@ -29,27 +45,13 @@ public class Product {
         this.name = name;
     }
 
-    public String getDescription() {
-        return description;
+    public Brand getBrand() {
+        return brand;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setBrand(Brand brand) {
+        this.brand = brand;
     }
 
-    public Double getPrice() {
-        return price;
-    }
-
-    public void setPrice(Double price) {
-        this.price = price;
-    }
-
-    public String getUnit() {
-        return unit;
-    }
-
-    public void setUnit(String unit) {
-        this.unit = unit;
-    }
+    // Other getters and setters...
 }

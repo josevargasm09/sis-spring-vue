@@ -1,3 +1,5 @@
+// src/main/java/com/bezkoder/spring/security/jwt/controllers/ClientController.java
+
 package com.bezkoder.spring.security.jwt.controllers;
 
 import java.util.List;
@@ -11,10 +13,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bezkoder.spring.security.jwt.models.Client;
-import com.bezkoder.spring.security.jwt.payload.response.MessageResponse;
 import com.bezkoder.spring.security.jwt.security.services.ClientService;
 
 @RestController
@@ -26,40 +28,27 @@ public class ClientController {
 
     @GetMapping
     public List<Client> getAllClients() {
-        return clientService.findAll();
-    }
-
-    @GetMapping("/{id}")
-    public ResponseEntity<Client> getClientById(@PathVariable Long id) {
-        Client client = clientService.findById(id);
-        if (client == null) {
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok(client);
+        return clientService.getAllClients();
     }
 
     @PostMapping
-    public ResponseEntity<?> createClient(@RequestBody Client client) {
-        clientService.save(client);
-        return ResponseEntity.ok(new MessageResponse("Client created successfully!"));
+    public ResponseEntity<Object> createClient(@RequestBody Client client) {
+        return ResponseEntity.ok(clientService.createClient(client));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateClient(@PathVariable Long id, @RequestBody Client client) {
-        if (clientService.findById(id) == null) {
-            return ResponseEntity.notFound().build();
-        }
-        client.setId(id);
-        clientService.save(client);
-        return ResponseEntity.ok(new MessageResponse("Client updated successfully!"));
+    public ResponseEntity<Object> updateClient(@PathVariable Long id, @RequestBody Client client) {
+        return ResponseEntity.ok(clientService.update(id, client));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteClient(@PathVariable Long id) {
-        if (clientService.findById(id) == null) {
-            return ResponseEntity.notFound().build();
-        }
-        clientService.delete(id);
-        return ResponseEntity.ok(new MessageResponse("Client deleted successfully!"));
+    public ResponseEntity<Void> deleteClient(@PathVariable Long id) {
+        clientService.deleteClient(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/search")
+    public List<Client> searchClients(@RequestParam String query) {
+        return clientService.searchClients(query);
     }
 }
