@@ -26,40 +26,30 @@ public class InvoiceController {
 
     @GetMapping
     public List<Invoice> getAllInvoices() {
-        return invoiceService.findAll();
+        return invoiceService.getAllInvoices();
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Invoice> getInvoiceById(@PathVariable Long id) {
-        Invoice invoice = invoiceService.findById(id);
-        if (invoice == null) {
-            return ResponseEntity.notFound().build();
-        }
+        Invoice invoice = invoiceService.getInvoiceById(id).orElseThrow(() -> new RuntimeException("Invoice not found"));
         return ResponseEntity.ok(invoice);
     }
 
     @PostMapping
     public ResponseEntity<?> createInvoice(@RequestBody Invoice invoice) {
-        invoiceService.save(invoice);
-        return ResponseEntity.ok(new MessageResponse("Invoice created successfully!"));
+        Invoice newInvoice = invoiceService.saveInvoice(invoice);
+        return ResponseEntity.ok(new MessageResponse("Comprobante creado correctamente!"));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateInvoice(@PathVariable Long id, @RequestBody Invoice invoice) {
-        if (invoiceService.findById(id) == null) {
-            return ResponseEntity.notFound().build();
-        }
-        invoice.setId(id);
-        invoiceService.save(invoice);
-        return ResponseEntity.ok(new MessageResponse("Invoice updated successfully!"));
+    public ResponseEntity<?> updateInvoice(@PathVariable Long id, @RequestBody Invoice invoiceDetails) {
+        Invoice updatedInvoice = invoiceService.updateInvoice(id, invoiceDetails);
+        return ResponseEntity.ok(new MessageResponse("Comprobante actualizado correctamente!"));
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteInvoice(@PathVariable Long id) {
-        if (invoiceService.findById(id) == null) {
-            return ResponseEntity.notFound().build();
-        }
-        invoiceService.delete(id);
-        return ResponseEntity.ok(new MessageResponse("Invoice deleted successfully!"));
+        invoiceService.deleteInvoice(id);
+        return ResponseEntity.ok(new MessageResponse("Comprobante eliminado correctamente!"));
     }
 }
