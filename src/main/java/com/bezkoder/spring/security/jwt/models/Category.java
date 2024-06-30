@@ -3,31 +3,32 @@
 package com.bezkoder.spring.security.jwt.models;
 
 import javax.persistence.*;
-import java.util.Set;
 
 @Entity
 @Table(name = "categories")
 public class Category {
-  
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
-    @Column(nullable = false, unique = true)
-    private String name;
-    
-    @Column(length = 255)
-    private String description;
-    
-    // Constructors
-    public Category() {}
 
+    @Column(name = "name")
+    private String name;
+
+    @Column(name = "description")
+    private String description;
+
+    // Constructor por defecto
+    public Category() {
+    }
+
+    // Constructor con parámetros
     public Category(String name, String description) {
         this.name = name;
         this.description = description;
     }
 
-    // Getters and Setters
+    // Getters y Setters
     public Long getId() {
         return id;
     }

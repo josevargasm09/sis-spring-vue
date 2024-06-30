@@ -1,33 +1,34 @@
-
+// src/main/java/com/bezkoder/spring/security/jwt/models/Brand.java
 
 package com.bezkoder.spring.security.jwt.models;
 
 import javax.persistence.*;
-import java.util.Set;
 
 @Entity
 @Table(name = "brands")
 public class Brand {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, unique = true)
+    @Column(name = "name")
     private String name;
 
-    // Unidirectional relationship with Product
-    @OneToMany(mappedBy = "brand", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Set<Product> products;
+    @Column(name = "description")
+    private String description;
 
-    // Constructors
-    public Brand() {}
-
-    public Brand(String name) {
-        this.name = name;
+    // Constructor por defecto
+    public Brand() {
     }
 
-    // Getters and Setters
+    // Constructor con parámetros
+    public Brand(String name, String description) {
+        this.name = name;
+        this.description = description;
+    }
+
+    // Getters y Setters
     public Long getId() {
         return id;
     }
@@ -44,11 +45,11 @@ public class Brand {
         this.name = name;
     }
 
-    public Set<Product> getProducts() {
-        return products;
+    public String getDescription() {
+        return description;
     }
 
-    public void setProducts(Set<Product> products) {
-        this.products = products;
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.bezkoder.spring.security.jwt.models.Product;
+import com.bezkoder.spring.security.jwt.payload.request.ProductDTO;
 import com.bezkoder.spring.security.jwt.payload.response.MessageResponse;
 import com.bezkoder.spring.security.jwt.security.services.ProductService;
 
@@ -25,13 +25,14 @@ public class ProductController {
     private ProductService productService;
 
     @GetMapping
-    public List<Product> getAllProducts() {
-        return productService.findAll();
+    public ResponseEntity<List<ProductDTO>> getAllProducts() {
+        List<ProductDTO> products = productService.getAllProducts();
+        return ResponseEntity.ok(products);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Product> getProductById(@PathVariable Long id) {
-        Product product = productService.findById(id);
+    public ResponseEntity<ProductDTO> getProductById(@PathVariable Long id) {
+        ProductDTO product = productService.getProductById(id);
         if (product == null) {
             return ResponseEntity.notFound().build();
         }
@@ -39,27 +40,20 @@ public class ProductController {
     }
 
     @PostMapping
-    public ResponseEntity<?> createProduct(@RequestBody Product product) {
-        productService.save(product);
-        return ResponseEntity.ok(new MessageResponse("Product created successfully!"));
+    public ResponseEntity<ProductDTO> createProduct(@RequestBody ProductDTO productDTO) {
+        ProductDTO product = productService.createProduct(productDTO);
+        return ResponseEntity.ok(product);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateProduct(@PathVariable Long id, @RequestBody Product product) {
-        if (productService.findById(id) == null) {
-            return ResponseEntity.notFound().build();
-        }
-        product.setId(id);
-        productService.save(product);
-        return ResponseEntity.ok(new MessageResponse("Product updated successfully!"));
+    public ResponseEntity<ProductDTO> updateProduct(@PathVariable Long id, @RequestBody ProductDTO productDTO) {
+        ProductDTO updatedProduct = productService.updateProduct(id, productDTO);
+        return ResponseEntity.ok(updatedProduct);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteProduct(@PathVariable Long id) {
-        if (productService.findById(id) == null) {
-            return ResponseEntity.notFound().build();
-        }
-        productService.delete(id);
-        return ResponseEntity.ok(new MessageResponse("Product deleted successfully!"));
+    public ResponseEntity<MessageResponse> deleteProduct(@PathVariable Long id) {
+        productService.deleteProduct(id);
+        return ResponseEntity.ok(new MessageResponse("Producto eliminado correctamente!"));
     }
 }

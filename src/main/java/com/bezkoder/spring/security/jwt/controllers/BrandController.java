@@ -5,14 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.bezkoder.spring.security.jwt.models.Brand;
 import com.bezkoder.spring.security.jwt.payload.response.MessageResponse;
@@ -47,19 +40,18 @@ public class BrandController {
         return ResponseEntity.ok(savedBrand);
     }
 
-    
-    @PostMapping("/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<?> updateBrand(@PathVariable Long id, @RequestBody Brand brand) {
-    Optional<Brand> existingBrand = brandService.getBrandById(id);
-    if (existingBrand.isPresent()) {
-        Brand updatedBrand = existingBrand.get();
-        updatedBrand.setName(brand.getName());
-        Brand savedBrand = brandService.saveBrand(updatedBrand);
-        return ResponseEntity.ok(savedBrand);
-    } else {
-        return ResponseEntity.badRequest().body(new MessageResponse("Error: Marca no encontrada"));
+        Optional<Brand> existingBrand = brandService.getBrandById(id);
+        if (existingBrand.isPresent()) {
+            Brand updatedBrand = existingBrand.get();
+            updatedBrand.setName(brand.getName());
+            Brand savedBrand = brandService.saveBrand(updatedBrand);
+            return ResponseEntity.ok(savedBrand);
+        } else {
+            return ResponseEntity.badRequest().body(new MessageResponse("Error: Marca no encontrada"));
+        }
     }
-}
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteBrand(@PathVariable Long id) {

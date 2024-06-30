@@ -12,23 +12,37 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+    @Column(name = "name")
     private String name;
+
+    @Column(name = "description")
+    private String description;
+
+    @Column(name = "price")
+    private Double price;
+
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
 
     @ManyToOne
     @JoinColumn(name = "brand_id")
     private Brand brand;
 
-    // Other fields and relationships...
+    // Constructor por defecto
+    public Product() {
+    }
 
-    // Constructors, Getters and Setters
-    public Product() {}
-
-    public Product(String name, Brand brand) {
+    // Constructor con parámetros
+    public Product(String name, String description, Double price, Category category, Brand brand) {
         this.name = name;
+        this.description = description;
+        this.price = price;
+        this.category = category;
         this.brand = brand;
     }
 
+    // Getters y Setters
     public Long getId() {
         return id;
     }
@@ -45,6 +59,30 @@ public class Product {
         this.name = name;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
     public Brand getBrand() {
         return brand;
     }
@@ -52,6 +90,4 @@ public class Product {
     public void setBrand(Brand brand) {
         this.brand = brand;
     }
-
-    // Other getters and setters...
 }
