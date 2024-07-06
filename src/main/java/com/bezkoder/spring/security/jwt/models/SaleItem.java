@@ -2,6 +2,8 @@ package com.bezkoder.spring.security.jwt.models;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 public class SaleItem {
     @Id
@@ -10,10 +12,11 @@ public class SaleItem {
 
     @ManyToOne
     @JoinColumn(name = "sale_id")
+     @JsonBackReference
     private Sale sale;
 
     @ManyToOne
-    @JoinColumn(name = "product_id")
+    @JoinColumn(name = "product_id") 
     private Product product;
 
     private Integer quantity;
@@ -23,7 +26,7 @@ public class SaleItem {
     // Getters and Setters
     public Long getId() {
         return id;
-    }
+    } 
 
     public void setId(Long id) {
         this.id = id;

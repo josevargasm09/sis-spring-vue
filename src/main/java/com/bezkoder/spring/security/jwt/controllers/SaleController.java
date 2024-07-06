@@ -46,7 +46,7 @@ public class SaleController {
         return ResponseEntity.ok(createdSale);
     }
 
-    @PutMapping("/{id}")
+     @PutMapping("/{id}")
     public ResponseEntity<Sale> updateSale(@PathVariable Long id, @RequestBody Sale saleDetails) {
         Sale updatedSale = saleService.update(id, saleDetails);
         if (updatedSale == null) {
@@ -57,9 +57,9 @@ public class SaleController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteSale(@PathVariable Long id) {
-        if ((boolean) saleService.delete(id)) {
-            return ResponseEntity.notFound().build();
+        if (!saleService.delete(id)) {
+            return ResponseEntity.noContent().build();
         }
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.notFound().build();
     }
 }

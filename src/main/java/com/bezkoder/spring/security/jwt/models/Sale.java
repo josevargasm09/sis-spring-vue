@@ -1,6 +1,12 @@
 package com.bezkoder.spring.security.jwt.models;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import java.util.List;
+
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -12,29 +18,31 @@ public class Sale {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "client_id")
+    @JoinColumn(name = "client_id", nullable = false)
     private Client client;
 
     @Temporal(TemporalType.DATE)
     private Date saleDate;
 
     @ManyToOne
-    @JoinColumn(name = "warehouse_id")
+    @JoinColumn(name = "warehouse_id", nullable = false)
     private Warehouse warehouse;
 
     @ManyToOne
-    @JoinColumn(name = "invoice_id")
+    @JoinColumn(name = "invoice_id", nullable = false)
     private Invoice invoice;
 
     @ManyToOne
-    @JoinColumn(name = "payment_method_id")
+    @JoinColumn(name = "payment_method_id", nullable = false)
     private PaymentMethod paymentMethod;
 
     private String currency;
     private Double totalAmount;
 
-    @OneToMany(mappedBy = "sale", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "sale", cascade = CascadeType.ALL)
+     @JsonManagedReference
     private Set<SaleItem> items = new HashSet<>();
+
 
     // Getters and Setters
     public Long getId() {
