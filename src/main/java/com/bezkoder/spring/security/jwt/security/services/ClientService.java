@@ -28,7 +28,7 @@ public class ClientService {
         Client existingClient = clientRepository.findById(id).orElseThrow(() -> new RuntimeException("Client not found"));
         existingClient.setName(client.getName());
         existingClient.setDni(client.getDni());
-        existingClient.setAddress(client.getClass());
+        existingClient.setAddress(client.getAddress());  // Corregido
         existingClient.setEmail(client.getEmail());
         existingClient.setPhone(client.getPhone());
         return clientRepository.save(existingClient);

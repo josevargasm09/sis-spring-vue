@@ -68,8 +68,11 @@ public class Client {
         this.dni = dni;
     }
 
-    public void setAddress(Class<? extends Client> class1) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setAddress'");
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 }

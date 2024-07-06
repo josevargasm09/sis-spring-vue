@@ -7,19 +7,35 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.bezkoder.spring.security.jwt.models.Sale;
+import com.bezkoder.spring.security.jwt.repository.ClientRepository;
+import com.bezkoder.spring.security.jwt.repository.InvoiceRepository;
+import com.bezkoder.spring.security.jwt.repository.PaymentMethodRepository;
 import com.bezkoder.spring.security.jwt.repository.SaleRepository;
+import com.bezkoder.spring.security.jwt.repository.WarehouseRepository;
 
 @Service
 public class SaleService {
 
-    @Autowired
+        @Autowired
     private SaleRepository saleRepository;
+
+    @Autowired
+    private ClientRepository clientRepository;
+
+    @Autowired
+    private WarehouseRepository warehouseRepository;
+
+    @Autowired
+    private InvoiceRepository invoiceRepository;
+
+    @Autowired
+    private PaymentMethodRepository paymentMethodRepository;
 
     public List<Sale> findAll() {
         return saleRepository.findAll();
     }
 
-    public Sale findById(Long id) {
+        public Sale findById(Long id) {
         return saleRepository.findById(id).orElse(null);
     }
 
@@ -27,19 +43,16 @@ public class SaleService {
         return saleRepository.save(sale);
     }
 
-    public Sale update(Long id, Sale saleDetails) {
-        Optional<Sale> optionalSale = saleRepository.findById(id);
-        if (optionalSale.isPresent()) {
-            Sale sale = optionalSale.get();
-            sale.setClient(saleDetails.getClient());
-            sale.setSaleDate(saleDetails.getSaleDate());
-            sale.setInvoice(saleDetails.getInvoice());
-            sale.setPaymentMethod(saleDetails.getPaymentMethod());
-            sale.setTotalAmount(saleDetails.getTotalAmount());
-            sale.setItems(saleDetails.getItems());
-            return saleRepository.save(sale);
-        }
-        return null;
+   public Sale update(Long id, Sale saleDetails) {
+        Sale sale = saleRepository.findById(id).orElseThrow(() -> new RuntimeException("Sale not found"));
+        sale.setClient(clientRepository.findById(saleDetails.getClient().getId()).orElseThrow(() -> new RuntimeException("Client not found")));
+        sale.setWarehouse(warehouseRepository.findById(saleDetails.getWarehouse().getId()).orElseThrow(() -> new RuntimeException("Warehouse not found")));
+        sale.setInvoice(invoiceRepository.findById(saleDetails.getInvoice().getId()).orElseThrow(() -> new RuntimeException("Invoice not found")));
+        sale.setPaymentMethod(paymentMethodRepository.findById(saleDetails.getPaymentMethod().getId()).orElseThrow(() -> new RuntimeException("Payment method not found")));
+        sale.setSaleDate(saleDetails.getSaleDate());
+        sale.setTotalAmount(saleDetails.getTotalAmount());
+        sale.setItems(saleDetails.getItems());
+        return saleRepository.save(sale);
     }
 
     public boolean delete(Long id) {
