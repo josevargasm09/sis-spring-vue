@@ -116,4 +116,14 @@ public class Sale {
     public void setItems(Set<SaleItem> items) {
         this.items = items;
     }
+
+    private String notes;
+    
+    public String getNotes() {
+        return notes;
+    }
+    
+    public void setNotes(String notes) {
+        this.notes = notes;
+    }
 }

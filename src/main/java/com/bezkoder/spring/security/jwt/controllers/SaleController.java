@@ -1,22 +1,13 @@
-// src/main/java/com/bezkoder/spring/security/jwt/controllers/SaleController.java
-
 package com.bezkoder.spring.security.jwt.controllers;
 
-import java.util.List;
-
+import com.bezkoder.spring.security.jwt.models.Sale;
+import com.bezkoder.spring.security.jwt.payload.request.SaleDTO;
+import com.bezkoder.spring.security.jwt.security.services.SaleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import com.bezkoder.spring.security.jwt.models.Sale;
-import com.bezkoder.spring.security.jwt.security.services.SaleService;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/sales")
@@ -41,14 +32,14 @@ public class SaleController {
     }
 
     @PostMapping
-    public ResponseEntity<Sale> createSale(@RequestBody Sale sale) {
-        Sale createdSale = saleService.save(sale);
+    public ResponseEntity<Sale> createSale(@RequestBody SaleDTO saleDTO) {
+        Sale createdSale = saleService.save(saleDTO);
         return ResponseEntity.ok(createdSale);
     }
 
-     @PutMapping("/{id}")
-    public ResponseEntity<Sale> updateSale(@PathVariable Long id, @RequestBody Sale saleDetails) {
-        Sale updatedSale = saleService.update(id, saleDetails);
+    @PutMapping("/{id}")
+    public ResponseEntity<Sale> updateSale(@PathVariable Long id, @RequestBody SaleDTO saleDTO) {
+        Sale updatedSale = saleService.update(id, saleDTO);
         if (updatedSale == null) {
             return ResponseEntity.notFound().build();
         }
@@ -58,8 +49,8 @@ public class SaleController {
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteSale(@PathVariable Long id) {
         if (!saleService.delete(id)) {
-            return ResponseEntity.noContent().build();
+            return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.notFound().build();
+        return ResponseEntity.noContent().build();
     }
 }

@@ -45,6 +45,7 @@ C:\Users\vmas_\Desktop\Nueva carpeta\sis-spring-vue\src\main\java\com\bezkoder\s
 C:\Users\vmas_\Desktop\Nueva carpeta\sis-spring-vue\src\main\java\com\bezkoder\spring\security\jwt\security\jwt\JwtUtils.java
 C:\Users\vmas_\Desktop\Nueva carpeta\sis-spring-vue\src\main\java\com\bezkoder\spring\security\jwt\models\Product.java
 C:\Users\vmas_\Desktop\Nueva carpeta\sis-spring-vue\src\main\java\com\bezkoder\spring\security\jwt\repository\CategoryRepository.java
+C:\Users\vmas_\Desktop\Nueva carpeta\sis-spring-vue\src\main\java\com\bezkoder\spring\security\jwt\payload\request\SaleDTO.java
 C:\Users\vmas_\Desktop\Nueva carpeta\sis-spring-vue\src\main\java\com\bezkoder\spring\security\jwt\repository\RefreshTokenRepository.java
 C:\Users\vmas_\Desktop\Nueva carpeta\sis-spring-vue\src\main\java\com\bezkoder\spring\security\jwt\repository\SupplierRepository.java
 C:\Users\vmas_\Desktop\Nueva carpeta\sis-spring-vue\src\main\java\com\bezkoder\spring\security\jwt\security\services\CategoryService.java
@@ -65,6 +66,7 @@ C:\Users\vmas_\Desktop\Nueva carpeta\sis-spring-vue\src\main\java\com\bezkoder\s
 C:\Users\vmas_\Desktop\Nueva carpeta\sis-spring-vue\src\main\java\com\bezkoder\spring\security\jwt\models\Supplier.java
 C:\Users\vmas_\Desktop\Nueva carpeta\sis-spring-vue\src\main\java\com\bezkoder\spring\security\jwt\payload\request\TokenRefreshRequest.java
 C:\Users\vmas_\Desktop\Nueva carpeta\sis-spring-vue\src\main\java\com\bezkoder\spring\security\jwt\repository\PurchaseRepository.java
+C:\Users\vmas_\Desktop\Nueva carpeta\sis-spring-vue\src\main\java\com\bezkoder\spring\security\jwt\payload\request\SaleItemDTO.java
 C:\Users\vmas_\Desktop\Nueva carpeta\sis-spring-vue\src\main\java\com\bezkoder\spring\security\jwt\controllers\InvoiceController.java
 C:\Users\vmas_\Desktop\Nueva carpeta\sis-spring-vue\src\main\java\com\bezkoder\spring\security\jwt\repository\CajaRepository.java
 C:\Users\vmas_\Desktop\Nueva carpeta\sis-spring-vue\src\main\java\com\bezkoder\spring\security\jwt\controllers\CategoryController.java

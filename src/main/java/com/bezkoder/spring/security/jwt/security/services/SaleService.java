@@ -1,22 +1,21 @@
 package com.bezkoder.spring.security.jwt.security.services;
 
-import java.util.List;
-import java.util.Optional;
-
+import com.bezkoder.spring.security.jwt.models.*;
+import com.bezkoder.spring.security.jwt.payload.request.SaleDTO;
+import com.bezkoder.spring.security.jwt.payload.request.SaleItemDTO;
+import com.bezkoder.spring.security.jwt.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.bezkoder.spring.security.jwt.models.Sale;
-import com.bezkoder.spring.security.jwt.repository.ClientRepository;
-import com.bezkoder.spring.security.jwt.repository.InvoiceRepository;
-import com.bezkoder.spring.security.jwt.repository.PaymentMethodRepository;
-import com.bezkoder.spring.security.jwt.repository.SaleRepository;
-import com.bezkoder.spring.security.jwt.repository.WarehouseRepository;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class SaleService {
 
-        @Autowired
+    @Autowired
     private SaleRepository saleRepository;
 
     @Autowired
@@ -31,27 +30,101 @@ public class SaleService {
     @Autowired
     private PaymentMethodRepository paymentMethodRepository;
 
+    @Autowired
+    private ProductRepository productRepository;
+
     public List<Sale> findAll() {
         return saleRepository.findAll();
     }
 
-        public Sale findById(Long id) {
+    public Sale findById(Long id) {
         return saleRepository.findById(id).orElse(null);
     }
 
-    public Sale save(Sale sale) {
+    public Sale save(SaleDTO saleDTO) {
+        Sale sale = new Sale();
+
+        Client client = clientRepository.findById(saleDTO.getClient_id())
+                .orElseThrow(() -> new IllegalArgumentException("Invalid Client ID"));
+        sale.setClient(client);
+
+        Warehouse warehouse = warehouseRepository.findById(saleDTO.getWarehouse_id())
+                .orElseThrow(() -> new IllegalArgumentException("Invalid Warehouse ID"));
+        sale.setWarehouse(warehouse);
+
+        Invoice invoice = invoiceRepository.findById(saleDTO.getInvoice_id())
+                .orElseThrow(() -> new IllegalArgumentException("Invalid Invoice ID"));
+        sale.setInvoice(invoice);
+
+        PaymentMethod paymentMethod = paymentMethodRepository.findById(saleDTO.getPayment_method_id())
+                .orElseThrow(() -> new IllegalArgumentException("Invalid Payment Method ID"));
+        sale.setPaymentMethod(paymentMethod);
+
+        sale.setSaleDate(saleDTO.getSale_date());
+        sale.setNotes(saleDTO.getNotes());
+        sale.setTotalAmount(saleDTO.getTotalAmount());
+
+        Set<SaleItem> saleItems = new HashSet<>();
+        for (SaleItemDTO itemDTO : saleDTO.getItems()) {
+            SaleItem saleItem = new SaleItem();
+
+            Product product = productRepository.findById(itemDTO.getProduct_id())
+                    .orElseThrow(() -> new IllegalArgumentException("Invalid Product ID"));
+            saleItem.setProduct(product);
+
+            saleItem.setQuantity(itemDTO.getQuantity());
+            saleItem.setPrice(itemDTO.getPrice());
+            saleItem.setTotal(itemDTO.getAmount());
+            saleItem.setSale(sale);
+            saleItems.add(saleItem);
+        }
+
+        sale.setItems(saleItems);
+
         return saleRepository.save(sale);
     }
 
-   public Sale update(Long id, Sale saleDetails) {
-        Sale sale = saleRepository.findById(id).orElseThrow(() -> new RuntimeException("Sale not found"));
-        sale.setClient(clientRepository.findById(saleDetails.getClient().getId()).orElseThrow(() -> new RuntimeException("Client not found")));
-        sale.setWarehouse(warehouseRepository.findById(saleDetails.getWarehouse().getId()).orElseThrow(() -> new RuntimeException("Warehouse not found")));
-        sale.setInvoice(invoiceRepository.findById(saleDetails.getInvoice().getId()).orElseThrow(() -> new RuntimeException("Invoice not found")));
-        sale.setPaymentMethod(paymentMethodRepository.findById(saleDetails.getPaymentMethod().getId()).orElseThrow(() -> new RuntimeException("Payment method not found")));
-        sale.setSaleDate(saleDetails.getSaleDate());
-        sale.setTotalAmount(saleDetails.getTotalAmount());
-        sale.setItems(saleDetails.getItems());
+    public Sale update(Long id, SaleDTO saleDTO) {
+        Sale sale = saleRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid Sale ID"));
+
+        Client client = clientRepository.findById(saleDTO.getClient_id())
+                .orElseThrow(() -> new IllegalArgumentException("Invalid Client ID"));
+        sale.setClient(client);
+
+        Warehouse warehouse = warehouseRepository.findById(saleDTO.getWarehouse_id())
+                .orElseThrow(() -> new IllegalArgumentException("Invalid Warehouse ID"));
+        sale.setWarehouse(warehouse);
+
+        Invoice invoice = invoiceRepository.findById(saleDTO.getInvoice_id())
+                .orElseThrow(() -> new IllegalArgumentException("Invalid Invoice ID"));
+        sale.setInvoice(invoice);
+
+        PaymentMethod paymentMethod = paymentMethodRepository.findById(saleDTO.getPayment_method_id())
+                .orElseThrow(() -> new IllegalArgumentException("Invalid Payment Method ID"));
+        sale.setPaymentMethod(paymentMethod);
+
+        sale.setSaleDate(saleDTO.getSale_date());
+        sale.setNotes(saleDTO.getNotes());
+        sale.setTotalAmount(saleDTO.getTotalAmount());
+
+        Set<SaleItem> saleItems = new HashSet<>();
+        for (SaleItemDTO itemDTO : saleDTO.getItems()) {
+            SaleItem saleItem = new SaleItem();
+
+            Product product = productRepository.findById(itemDTO.getProduct_id())
+                    .orElseThrow(() -> new IllegalArgumentException("Invalid Product ID"));
+            saleItem.setProduct(product);
+
+            saleItem.setQuantity(itemDTO.getQuantity());
+            saleItem.setPrice(itemDTO.getPrice());
+            saleItem.setTotal(itemDTO.getAmount());
+            saleItem.setSale(sale);
+            saleItems.add(saleItem);
+        }
+
+        sale.setItems(saleItems);
+
         return saleRepository.save(sale);
     }
 
