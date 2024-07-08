@@ -62,9 +62,10 @@ public class SaleService {
 
         sale.setSaleDate(saleDTO.getSale_date());
         sale.setNotes(saleDTO.getNotes());
-        sale.setTotalAmount(saleDTO.getTotalAmount());
 
         Set<SaleItem> saleItems = new HashSet<>();
+        double totalAmount = 0;
+
         for (SaleItemDTO itemDTO : saleDTO.getItems()) {
             SaleItem saleItem = new SaleItem();
 
@@ -74,12 +75,14 @@ public class SaleService {
 
             saleItem.setQuantity(itemDTO.getQuantity());
             saleItem.setPrice(itemDTO.getPrice());
-            saleItem.setTotal(itemDTO.getAmount());
+            saleItem.setTotal(itemDTO.getQuantity() * itemDTO.getPrice());
+            totalAmount += saleItem.getTotal();
             saleItem.setSale(sale);
             saleItems.add(saleItem);
         }
 
         sale.setItems(saleItems);
+        sale.setTotalAmount(totalAmount);
 
         return saleRepository.save(sale);
     }
@@ -106,9 +109,10 @@ public class SaleService {
 
         sale.setSaleDate(saleDTO.getSale_date());
         sale.setNotes(saleDTO.getNotes());
-        sale.setTotalAmount(saleDTO.getTotalAmount());
 
         Set<SaleItem> saleItems = new HashSet<>();
+        double totalAmount = 0;
+
         for (SaleItemDTO itemDTO : saleDTO.getItems()) {
             SaleItem saleItem = new SaleItem();
 
@@ -118,12 +122,14 @@ public class SaleService {
 
             saleItem.setQuantity(itemDTO.getQuantity());
             saleItem.setPrice(itemDTO.getPrice());
-            saleItem.setTotal(itemDTO.getAmount());
+            saleItem.setTotal(itemDTO.getQuantity() * itemDTO.getPrice());
+            totalAmount += saleItem.getTotal();
             saleItem.setSale(sale);
             saleItems.add(saleItem);
         }
 
         sale.setItems(saleItems);
+        sale.setTotalAmount(totalAmount);
 
         return saleRepository.save(sale);
     }
