@@ -1,7 +1,9 @@
+C:\Users\vmas_\Desktop\Nueva carpeta\sis-spring-vue\src\main\java\com\bezkoder\spring\security\jwt\controllers\ClientReportController.java
 C:\Users\vmas_\Desktop\Nueva carpeta\sis-spring-vue\src\main\java\com\bezkoder\spring\security\jwt\repository\WarehouseRepository.java
 C:\Users\vmas_\Desktop\Nueva carpeta\sis-spring-vue\src\main\java\com\bezkoder\spring\security\jwt\security\jwt\AuthEntryPointJwt.java
 C:\Users\vmas_\Desktop\Nueva carpeta\sis-spring-vue\src\main\java\com\bezkoder\spring\security\jwt\security\services\RefreshTokenService.java
 C:\Users\vmas_\Desktop\Nueva carpeta\sis-spring-vue\src\main\java\com\bezkoder\spring\security\jwt\controllers\WarehouseController.java
+C:\Users\vmas_\Desktop\Nueva carpeta\sis-spring-vue\src\main\java\com\bezkoder\spring\security\jwt\repository\ClientReportRepository.java
 C:\Users\vmas_\Desktop\Nueva carpeta\sis-spring-vue\src\main\java\com\bezkoder\spring\security\jwt\models\Category.java
 C:\Users\vmas_\Desktop\Nueva carpeta\sis-spring-vue\src\main\java\com\bezkoder\spring\security\jwt\models\Purchase.java
 C:\Users\vmas_\Desktop\Nueva carpeta\sis-spring-vue\src\main\java\com\bezkoder\spring\security\jwt\controllers\BranchController.java
@@ -37,6 +39,7 @@ C:\Users\vmas_\Desktop\Nueva carpeta\sis-spring-vue\src\main\java\com\bezkoder\s
 C:\Users\vmas_\Desktop\Nueva carpeta\sis-spring-vue\src\main\java\com\bezkoder\spring\security\jwt\payload\response\JwtResponse.java
 C:\Users\vmas_\Desktop\Nueva carpeta\sis-spring-vue\src\main\java\com\bezkoder\spring\security\jwt\controllers\PaymentMethodController.java
 C:\Users\vmas_\Desktop\Nueva carpeta\sis-spring-vue\src\main\java\com\bezkoder\spring\security\jwt\security\services\SaleService.java
+C:\Users\vmas_\Desktop\Nueva carpeta\sis-spring-vue\src\main\java\com\bezkoder\spring\security\jwt\controllers\PurchaseReportController.java
 C:\Users\vmas_\Desktop\Nueva carpeta\sis-spring-vue\src\main\java\com\bezkoder\spring\security\jwt\models\Branch.java
 C:\Users\vmas_\Desktop\Nueva carpeta\sis-spring-vue\src\main\java\com\bezkoder\spring\security\jwt\models\Brand.java
 C:\Users\vmas_\Desktop\Nueva carpeta\sis-spring-vue\src\main\java\com\bezkoder\spring\security\jwt\controllers\SaleController.java
@@ -53,12 +56,18 @@ C:\Users\vmas_\Desktop\Nueva carpeta\sis-spring-vue\src\main\java\com\bezkoder\s
 C:\Users\vmas_\Desktop\Nueva carpeta\sis-spring-vue\src\main\java\com\bezkoder\spring\security\jwt\security\services\SupplierService.java
 C:\Users\vmas_\Desktop\Nueva carpeta\sis-spring-vue\src\main\java\com\bezkoder\spring\security\jwt\payload\request\ProductDTO.java
 C:\Users\vmas_\Desktop\Nueva carpeta\sis-spring-vue\src\main\java\com\bezkoder\spring\security\jwt\payload\request\PurchaseDTO.java
+C:\Users\vmas_\Desktop\Nueva carpeta\sis-spring-vue\src\main\java\com\bezkoder\spring\security\jwt\models\PurchaseReport.java
+C:\Users\vmas_\Desktop\Nueva carpeta\sis-spring-vue\src\main\java\com\bezkoder\spring\security\jwt\models\ClientReport.java
+C:\Users\vmas_\Desktop\Nueva carpeta\sis-spring-vue\src\main\java\com\bezkoder\spring\security\jwt\security\services\PurchaseReportService.java
 C:\Users\vmas_\Desktop\Nueva carpeta\sis-spring-vue\src\main\java\com\bezkoder\spring\security\jwt\payload\request\LoginRequest.java
+C:\Users\vmas_\Desktop\Nueva carpeta\sis-spring-vue\src\main\java\com\bezkoder\spring\security\jwt\repository\PurchaseReportRepository.java
 C:\Users\vmas_\Desktop\Nueva carpeta\sis-spring-vue\src\main\java\com\bezkoder\spring\security\jwt\security\jwt\AuthTokenFilter.java
 C:\Users\vmas_\Desktop\Nueva carpeta\sis-spring-vue\src\main\java\com\bezkoder\spring\security\jwt\controllers\AuthController.java
 C:\Users\vmas_\Desktop\Nueva carpeta\sis-spring-vue\src\main\java\com\bezkoder\spring\security\jwt\controllers\PurchaseController.java
 C:\Users\vmas_\Desktop\Nueva carpeta\sis-spring-vue\src\main\java\com\bezkoder\spring\security\jwt\payload\request\SignupRequest.java
+C:\Users\vmas_\Desktop\Nueva carpeta\sis-spring-vue\src\main\java\com\bezkoder\spring\security\jwt\models\SalesReport.java
 C:\Users\vmas_\Desktop\Nueva carpeta\sis-spring-vue\src\main\java\com\bezkoder\spring\security\jwt\models\SaleItem.java
+C:\Users\vmas_\Desktop\Nueva carpeta\sis-spring-vue\src\main\java\com\bezkoder\spring\security\jwt\security\services\ClientReportService.java
 C:\Users\vmas_\Desktop\Nueva carpeta\sis-spring-vue\src\main\java\com\bezkoder\spring\security\jwt\SpringBootSecurityJwtApplication.java
 C:\Users\vmas_\Desktop\Nueva carpeta\sis-spring-vue\src\main\java\com\bezkoder\spring\security\jwt\payload\response\MessageResponse.java
 C:\Users\vmas_\Desktop\Nueva carpeta\sis-spring-vue\src\main\java\com\bezkoder\spring\security\jwt\models\ERole.java
@@ -67,6 +76,7 @@ C:\Users\vmas_\Desktop\Nueva carpeta\sis-spring-vue\src\main\java\com\bezkoder\s
 C:\Users\vmas_\Desktop\Nueva carpeta\sis-spring-vue\src\main\java\com\bezkoder\spring\security\jwt\payload\request\TokenRefreshRequest.java
 C:\Users\vmas_\Desktop\Nueva carpeta\sis-spring-vue\src\main\java\com\bezkoder\spring\security\jwt\repository\PurchaseRepository.java
 C:\Users\vmas_\Desktop\Nueva carpeta\sis-spring-vue\src\main\java\com\bezkoder\spring\security\jwt\payload\request\SaleItemDTO.java
+C:\Users\vmas_\Desktop\Nueva carpeta\sis-spring-vue\src\main\java\com\bezkoder\spring\security\jwt\repository\SalesReportRepository.java
 C:\Users\vmas_\Desktop\Nueva carpeta\sis-spring-vue\src\main\java\com\bezkoder\spring\security\jwt\controllers\InvoiceController.java
 C:\Users\vmas_\Desktop\Nueva carpeta\sis-spring-vue\src\main\java\com\bezkoder\spring\security\jwt\repository\CajaRepository.java
 C:\Users\vmas_\Desktop\Nueva carpeta\sis-spring-vue\src\main\java\com\bezkoder\spring\security\jwt\controllers\CategoryController.java
@@ -75,6 +85,7 @@ C:\Users\vmas_\Desktop\Nueva carpeta\sis-spring-vue\src\main\java\com\bezkoder\s
 C:\Users\vmas_\Desktop\Nueva carpeta\sis-spring-vue\src\main\java\com\bezkoder\spring\security\jwt\controllers\SupplierController.java
 C:\Users\vmas_\Desktop\Nueva carpeta\sis-spring-vue\src\main\java\com\bezkoder\spring\security\jwt\controllers\ProductController.java
 C:\Users\vmas_\Desktop\Nueva carpeta\sis-spring-vue\src\main\java\com\bezkoder\spring\security\jwt\models\RefreshToken.java
+C:\Users\vmas_\Desktop\Nueva carpeta\sis-spring-vue\src\main\java\com\bezkoder\spring\security\jwt\security\services\SalesReportService.java
 C:\Users\vmas_\Desktop\Nueva carpeta\sis-spring-vue\src\main\java\com\bezkoder\spring\security\jwt\advice\ErrorMessage.java
 C:\Users\vmas_\Desktop\Nueva carpeta\sis-spring-vue\src\main\java\com\bezkoder\spring\security\jwt\repository\BranchRepository.java
 C:\Users\vmas_\Desktop\Nueva carpeta\sis-spring-vue\src\main\java\com\bezkoder\spring\security\jwt\models\Client.java
@@ -82,3 +93,4 @@ C:\Users\vmas_\Desktop\Nueva carpeta\sis-spring-vue\src\main\java\com\bezkoder\s
 C:\Users\vmas_\Desktop\Nueva carpeta\sis-spring-vue\src\main\java\com\bezkoder\spring\security\jwt\repository\InvoiceRepository.java
 C:\Users\vmas_\Desktop\Nueva carpeta\sis-spring-vue\src\main\java\com\bezkoder\spring\security\jwt\security\services\ProductService.java
 C:\Users\vmas_\Desktop\Nueva carpeta\sis-spring-vue\src\main\java\com\bezkoder\spring\security\jwt\controllers\BrandController.java
+C:\Users\vmas_\Desktop\Nueva carpeta\sis-spring-vue\src\main\java\com\bezkoder\spring\security\jwt\controllers\SalesReportController.java
